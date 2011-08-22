@@ -1,0 +1,64 @@
+name: Backforge
+main: com.namarius.complexredstone.ComplexRedstone
+version: 0.0.0
+author: Namarius
+database: false
+commands:
+  crstart:
+    description: Set the start requirements for sampling
+    usage: /<command> blabla |
+      2blabla
+  crend:
+    description: Set the end requirements for sampling
+    usage: |
+      /<command> blabla
+  crstep:
+    description: Set the start requirements for sampling
+    usage: |
+      /<command> blabla
+  crarm:
+    description: Set the start requirements for sampling
+    useage: |
+      /<command> blabla
+  crfuse:
+    description: Set the start requirements for sampling
+    useage: |
+      /<command> blabla
+  crlist:
+    description: Set the start requirements for sampling
+    useage: |
+      /<command> blabla
+  cradd:
+    description: Set the start requirements for sampling
+    useage: |
+      /<command> blabla
+  crdelete:
+    description: Set the start requirements for sampling
+    useage: |
+      /<command> blabla
+  craddset:
+    description: Set the start requirements for sampling
+    useage: |
+      /<command> blabla
+  crdeleteset:
+    description: Set the start requirements for sampling
+    useage: |
+      /<command> blabla
+  crswitchset:
+    description: Set the start requirements for sampling
+    useage: |
+      /<command> blabla
+  crenable:
+    description: Set the start requirements for sampling
+    useage: |
+      /<command> blabla
+  crdisable:
+    description: Set the start requirements for sampling
+    useage: |
+      /<command> blabla
+  crforcedisable:
+    description: Set the start requirements for sampling
+    useage: |
+      /<command> blabla
+  
+  
