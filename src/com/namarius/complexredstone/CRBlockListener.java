@@ -1,12 +1,7 @@
 package com.namarius.complexredstone;
 
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Vector;
-
 import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockListener;
 import org.bukkit.event.block.BlockPhysicsEvent;
@@ -14,51 +9,7 @@ import org.bukkit.event.block.BlockPhysicsEvent;
 import com.namarius.complexredstone.debugger.CRDebugSet;
 
 public class CRBlockListener extends BlockListener {
-	
-	class InternalLocation
-	{
-		private Location location;
-		private int counter;
-		public InternalLocation(Location location)
-		{
-			this.location=location;
-			counter=1;
-		}
 		
-		public void retain()
-		{
-			++counter;
-		}
-		
-		public boolean release()
-		{
-			--counter;
-			return canRelease();
-		}
-		
-		public boolean canRelease()
-		{
-			return counter<1;
-		}
-		
-		public Location getLocation()
-		{
-			return location;
-		}
-		
-		@Override
-		public boolean equals(Object obj) {
-			// TODO Auto-generated method stub
-			return location.equals(obj);
-		}
-		
-		@Override
-		public int hashCode() {
-			// TODO Auto-generated method stub
-			return location.hashCode();
-		}
-	}
-	
 	ComplexRedstone plugin;
 	HashMap<Player,HashMap<String,CRDebugSet>> allsets = new HashMap<Player,HashMap<String,CRDebugSet>>();
 	HashMap<Player,CRDebugSet> activesets = new HashMap<Player,CRDebugSet>();
@@ -69,7 +20,8 @@ public class CRBlockListener extends BlockListener {
 	}
 	
 	@Override
-	public void onBlockPhysics(BlockPhysicsEvent event) {
+	public void onBlockPhysics(BlockPhysicsEvent event) 
+	{
 		Location location=event.getBlock().getLocation();
 		if(blocks.containsKey(location))//Well we have a cache hit
 		{
@@ -77,6 +29,49 @@ public class CRBlockListener extends BlockListener {
 				sets.reciveEvent(event);				
 			}
 		}
+	}
+	
+	public boolean addSet(Player player,String name)
+	{
+		HashMap<String,CRDebugSet> playersets = allsets.get(player);
+		if(playersets != null)
+		{
+			playersets.put(name, new CRDebugSet(this));
+			return false;
+		}
+		else
+		{
+			allsets.put(player, new HashMap<String,CRDebugSet>()).put(name, new CRDebugSet(this));
+			return true;
+		}
+	}
+	
+	public boolean removeSet(Player player,String name)
+	{
+		HashMap<String,CRDebugSet> playersets = allsets.get(player);
+		if(playersets != null)
+		{
+			CRDebugSet debugset = playersets.get(name);
+			debugset.setInactive();
+			activesets.remove(player);
+			playersets.remove(player);			
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public boolean removePlayer(Player player)
+	{
+		HashMap<String,CRDebugSet> playersets = allsets.get(player);
+		for (CRDebugSet sets : playersets.values()) {
+			sets.setInactive();
+		}
+		allsets.remove(player);
+		activesets.remove(player);
+		return false;
 	}
 	
 	public boolean insertBlock(Location location)

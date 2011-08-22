@@ -4,61 +4,50 @@ version: 0.0.0
 author: Namarius
 database: false
 commands:
+  crcom:
+    description: textextext
+    usage: /<command> textextext
   crstart:
-    description: Set the start requirements for sampling
-    usage: /<command> blabla |
-      2blabla
+    description: textextext
+    usage: /<command> textextext
   crend:
-    description: Set the end requirements for sampling
-    usage: |
-      /<command> blabla
+    description: textextext
+    usage: /<command> textextext
   crstep:
-    description: Set the start requirements for sampling
-    usage: |
-      /<command> blabla
+    description: textextext
+    usage: /<command> textextext
   crarm:
-    description: Set the start requirements for sampling
-    useage: |
-      /<command> blabla
+    description: textextext
+    usage: /<command> textextext
   crfuse:
-    description: Set the start requirements for sampling
-    useage: |
-      /<command> blabla
+    description: textextext
+    usage: /<command> textextext
   crlist:
-    description: Set the start requirements for sampling
-    useage: |
-      /<command> blabla
+    description: textextext
+    usage: /<command> textextext
   cradd:
-    description: Set the start requirements for sampling
-    useage: |
-      /<command> blabla
+    description: textextext
+    usage: /<command> textextext
   crdelete:
-    description: Set the start requirements for sampling
-    useage: |
-      /<command> blabla
+    description: textextext
+    usage: /<command> textextext
   craddset:
-    description: Set the start requirements for sampling
-    useage: |
-      /<command> blabla
+    description: textextext
+    usage: /<command> textextext
   crdeleteset:
-    description: Set the start requirements for sampling
-    useage: |
-      /<command> blabla
+    description: textextext
+    usage: /<command> textextext
   crswitchset:
-    description: Set the start requirements for sampling
-    useage: |
-      /<command> blabla
+    description: textextext
+    usage: /<command> textextext
   crenable:
-    description: Set the start requirements for sampling
-    useage: |
-      /<command> blabla
+    description: textextext
+    usage: /<command> textextext
   crdisable:
-    description: Set the start requirements for sampling
-    useage: |
-      /<command> blabla
+    description: textextext
+    usage: /<command> textextext
   crforcedisable:
-    description: Set the start requirements for sampling
-    useage: |
-      /<command> blabla
+    description: textextext
+    usage: /<command> textextext
   
   

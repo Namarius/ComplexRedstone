@@ -4,7 +4,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
 public interface CRCommand extends CommandExecutor 
-{
+{	
 	public abstract String commandName();
 	
 	@Override

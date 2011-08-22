@@ -15,14 +15,12 @@ public class CRPlayerListener extends PlayerListener
 	
 	@Override
 	public void onPlayerQuit(PlayerQuitEvent event) {
-		// TODO Auto-generated method stub
-		super.onPlayerQuit(event);
+		plugin.removePlayer(event.getPlayer());
 	}
 	
 	@Override
 	public void onPlayerKick(PlayerKickEvent event) {
-		// TODO Auto-generated method stub
-		super.onPlayerKick(event);
+		plugin.removePlayer(event.getPlayer());
 	}
 
 }

@@ -22,7 +22,7 @@ public class CRDebugSet
 		return true;
 	}
 	
-	public boolean getActive()
+	public boolean setActive()
 	{
 		for (CRLocation loc : blocks) {
 			blocklistener.insertBlock(loc);
@@ -30,7 +30,7 @@ public class CRDebugSet
 		return true;
 	}
 	
-	public boolean getInactive()
+	public boolean setInactive()
 	{
 		for (CRLocation loc : blocks) {
 			blocklistener.removeBlock(loc);
