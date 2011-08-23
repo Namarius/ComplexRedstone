@@ -1,12 +1,12 @@
-name: Backforge
+name: ComplexRedstone
 main: com.namarius.complexredstone.ComplexRedstone
-version: 0.0.0
+version: 0.0.0.0
 author: Namarius
 database: false
 commands:
   crcom:
-    description: textextext
-    usage: /<command> textextext
+    description: Saving a command that is longer than possible and sending it out if // is found
+    usage: /<command> [command, //(Send Command), param] ...
   crstart:
     description: textextext
     usage: /<command> textextext

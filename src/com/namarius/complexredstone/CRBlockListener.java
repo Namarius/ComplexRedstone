@@ -66,11 +66,15 @@ public class CRBlockListener extends BlockListener {
 	public boolean removePlayer(Player player)
 	{
 		HashMap<String,CRDebugSet> playersets = allsets.get(player);
-		for (CRDebugSet sets : playersets.values()) {
-			sets.setInactive();
+		if(playersets != null)
+		{
+			for (CRDebugSet sets : playersets.values()) {
+				sets.setInactive();
+			}
+			allsets.remove(player);
+			activesets.remove(player);
+			return true;
 		}
-		allsets.remove(player);
-		activesets.remove(player);
 		return false;
 	}
 	

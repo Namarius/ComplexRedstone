@@ -34,6 +34,11 @@ public class ComplexRedstone extends JavaPlugin {
 		return self;
 	}
 	
+	public CRBlockListener getBlockListener()
+	{
+		return blocklistener;
+	}
+	
 	@Override
 	public void onDisable() {
 		log.info("ComplexRedstone shutting down");

@@ -17,7 +17,8 @@ public enum CRCommandType
 	SwitchCommand(SwitchCommand.class),
 	EnableCommand(EnableCommand.class),
 	DisableCommand(DisableCommand.class),
-	ForcedDisableCommand(ForcedDisableCommand.class);
+	ForcedDisableCommand(ForcedDisableCommand.class),
+	ExecuteCommand(ExecuteCommand.class);
 	
 	private Class<? extends CRCommand> command = null; 
 	
