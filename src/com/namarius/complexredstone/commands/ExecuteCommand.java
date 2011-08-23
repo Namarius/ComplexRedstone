@@ -7,6 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import com.namarius.complexredstone.ComplexRedstone;
+import com.namarius.complexredstone.utils.ChatUtil;
 
 public class ExecuteCommand extends AbstractCommand {
 	
@@ -20,17 +21,13 @@ public class ExecuteCommand extends AbstractCommand {
 	
 	private void addCommand(Player player, String params)
 	{
+		params=params.trim();
 		String playercommand = commands.get(player);
 		if(!params.isEmpty())
 		{
 			if(playercommand != null)
-			{
-				playercommand=playercommand.concat(" ").concat(params);
-			}
-			else
-			{
-				commands.put(player, params);
-			}
+				params=playercommand.concat(" ").concat(params);
+			commands.put(player, params);
 		}
 	}
 	
@@ -66,6 +63,7 @@ public class ExecuteCommand extends AbstractCommand {
 				addCommand((Player) sender, concatargs.substring(0,pos));
 				sendCommand(sender);
 			}
+			ChatUtil.note(sender, "Command:"+commands.get((Player)sender));
 			return true;
 		}
 		else

@@ -36,15 +36,16 @@ public class CRBlockListener extends BlockListener {
 		HashMap<String,CRDebugSet> playersets = allsets.get(player);
 		if(playersets != null)
 		{
+			boolean ret = playersets.containsKey(name);
 			playersets.put(name, new CRDebugSet(this));
-			return false;
+			return ret;
 		}
 		else
 		{
 			HashMap<String,CRDebugSet> temp = new HashMap<String,CRDebugSet>();
 			temp.put(name, new CRDebugSet(this));
 			allsets.put(player, temp);
-			return true;
+			return false;
 		}
 	}
 	
@@ -56,7 +57,7 @@ public class CRBlockListener extends BlockListener {
 			CRDebugSet debugset = playersets.get(name);
 			debugset.setInactive();
 			activesets.remove(player);
-			playersets.remove(player);			
+			playersets.remove(name);			
 			return true;
 		}
 		else
