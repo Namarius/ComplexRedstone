@@ -41,7 +41,9 @@ public class CRBlockListener extends BlockListener {
 		}
 		else
 		{
-			allsets.put(player, new HashMap<String,CRDebugSet>()).put(name, new CRDebugSet(this));
+			HashMap<String,CRDebugSet> temp = new HashMap<String,CRDebugSet>();
+			temp.put(name, new CRDebugSet(this));
+			allsets.put(player, temp);
 			return true;
 		}
 	}

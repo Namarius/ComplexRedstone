@@ -3,7 +3,7 @@ package com.namarius.complexredstone.commands;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
-public class StepCommand implements CRCommand {
+public class StepCommand extends AbstractCommand {
 
 	@Override
 	public String commandName() {
@@ -12,7 +12,7 @@ public class StepCommand implements CRCommand {
 	}
 
 	@Override
-	public boolean onCommand(CommandSender sender, Command command,
+	public boolean localOnCommand(CommandSender sender, Command command,
 			String label, String[] args) {
 		// TODO Auto-generated method stub
 		return false;

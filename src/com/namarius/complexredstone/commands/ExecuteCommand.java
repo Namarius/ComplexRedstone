@@ -2,14 +2,13 @@ package com.namarius.complexredstone.commands;
 
 import java.util.HashMap;
 
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import com.namarius.complexredstone.ComplexRedstone;
 
-public class ExecuteCommand implements CRCommand {
+public class ExecuteCommand extends AbstractCommand {
 	
 	HashMap<Player,String> commands = new HashMap<Player,String>();
 
@@ -46,26 +45,34 @@ public class ExecuteCommand implements CRCommand {
 	}
 
 	@Override
-	public boolean onCommand(CommandSender sender, Command command,
+	public boolean localOnCommand(CommandSender sender, Command command,
 			String label, String[] args) {
-		if(args.length==0)
-			return false;
-		String concatargs="";
-		for(String string : args)
+		if(sender instanceof Player)
 		{
-			concatargs=concatargs.concat(" ").concat(string);
-		}
-		int pos = concatargs.indexOf("//");
-		if(pos<0)
-		{
-			addCommand((Player) sender, concatargs);
+			if(args.length==0)
+				return false;
+			String concatargs="";
+			for(String string : args)
+			{
+				concatargs=concatargs.concat(" ").concat(string);
+			}
+			int pos = concatargs.indexOf("//");
+			if(pos<0)
+			{
+				addCommand((Player) sender, concatargs);
+			}
+			else
+			{
+				addCommand((Player) sender, concatargs.substring(0,pos));
+				sendCommand(sender);
+			}
+			return true;
 		}
 		else
 		{
-			addCommand((Player) sender, concatargs.substring(0,pos));
-			sendCommand(sender);
+			sender.sendMessage("Non player can't use this command");
+			return true;
 		}
-		return true;
 	}
 
 }

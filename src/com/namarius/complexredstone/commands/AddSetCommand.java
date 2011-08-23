@@ -2,8 +2,12 @@ package com.namarius.complexredstone.commands;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
-public class AddSetCommand implements CRCommand {
+import com.namarius.complexredstone.ComplexRedstone;
+import com.namarius.complexredstone.utils.ChatUtil;
+
+public class AddSetCommand extends AbstractCommand {
 
 	@Override
 	public String commandName() {
@@ -12,9 +16,27 @@ public class AddSetCommand implements CRCommand {
 	}
 
 	@Override
-	public boolean onCommand(CommandSender sender, Command command,
+	public boolean localOnCommand(CommandSender sender, Command command,
 			String label, String[] args) {
-		// TODO Auto-generated method stub
+		if(args.length==1)
+		{
+			if(args[0].isEmpty())
+			{
+				ChatUtil.empty(sender);
+			}
+			else
+			{
+				ComplexRedstone.getSelf().getBlockListener().addSet((Player) sender, args[0]);
+			}
+		}
+		else if(args.length<1)
+		{
+			ChatUtil.tooFew(1, sender);
+		}
+		else
+		{
+			ChatUtil.tooMany(args.length-1, sender);
+		}
 		return false;
 	}
 
