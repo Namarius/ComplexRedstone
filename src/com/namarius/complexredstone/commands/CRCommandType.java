@@ -18,7 +18,8 @@ public enum CRCommandType
 	EnableCommand(EnableCommand.class),
 	DisableCommand(DisableCommand.class),
 	ForcedDisableCommand(ForcedDisableCommand.class),
-	ExecuteCommand(ExecuteCommand.class);
+	ExecuteCommand(ExecuteCommand.class),
+	MoreCommand(MoreCommand.class);
 	
 	private Class<? extends CRCommand> command = null; 
 	

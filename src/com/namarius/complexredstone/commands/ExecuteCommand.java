@@ -29,6 +29,7 @@ public class ExecuteCommand extends AbstractCommand {
 				params=playercommand.concat(" ").concat(params);
 			commands.put(player, params);
 		}
+		ChatUtil.note(player, "Command:"+commands.get(player));
 	}
 	
 	private void sendCommand(CommandSender sender)
@@ -39,6 +40,7 @@ public class ExecuteCommand extends AbstractCommand {
 			//ComplexRedstone.getSelf().info("command:"+params+"/");
 			ComplexRedstone.getSelf().getServer().dispatchCommand(sender, params.trim());
 		}
+		commands.put((Player) sender, "");
 	}
 
 	@Override
@@ -63,7 +65,6 @@ public class ExecuteCommand extends AbstractCommand {
 				addCommand((Player) sender, concatargs.substring(0,pos));
 				sendCommand(sender);
 			}
-			ChatUtil.note(sender, "Command:"+commands.get((Player)sender));
 			return true;
 		}
 		else

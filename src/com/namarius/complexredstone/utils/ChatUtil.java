@@ -7,6 +7,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+
 public final class ChatUtil 
 {
 	public enum Symbol
@@ -18,6 +19,12 @@ public final class ChatUtil
 	private static final int maxlinelength = 50;
 	private static final HashMap<Player,String[]> output = new HashMap<Player,String[]>();
 	
+	public static String[] getLines(Player player)
+	{
+		return output.get(player);
+	}
+	
+	@Deprecated
 	public static void send(CommandSender sender,String color,String message)
 	{
 		while(message.length()>0)
@@ -33,11 +40,24 @@ public final class ChatUtil
 		}
 	}
 	
-	private static void rawsendout(CommandSender sender,String[] messages)
+	public static void rawsendout(CommandSender sender,String message)
+	{
+		if(message.length()>2&&message.charAt(2)==' ')
+		{
+			message=message.substring(0, 2).concat(message.substring(3));
+		}
+		sender.sendMessage(message);
+	}
+	
+	public static void rawsendout(CommandSender sender,String[] messages)
 	{
 		for(String string : messages)
 		{
-			sender.sendMessage(string.trim());
+			if(string.length()>2&&string.charAt(2)==' ')
+			{
+				string=string.substring(0, 2).concat(string.substring(3));
+			}
+			sender.sendMessage(string);
 		}
 	}
 	
@@ -57,7 +77,8 @@ public final class ChatUtil
 		String temp="";
 		for(Object object : objects)
 		{
-			temp+=object.toString();
+			if(object != null)
+				temp+=object.toString();
 		}
 		return temp;
 	}
@@ -77,29 +98,44 @@ public final class ChatUtil
 			else if(object instanceof String)
 			{
 				String temp = (String) object;
+				//ComplexRedstone cr = ComplexRedstone.getSelf();
 				for(int templength=temp.length();templength>0;templength=temp.length())
 				{
 					int currentlength=getStringLength(currentline.toArray());
 					int lastspace=0;
+					boolean sendout = false;
+					//cr.info("Begin");
+					//cr.info("currentlenght:"+currentlength+"templength:"+templength);
 					if(templength+currentlength>maxlinelength)
 					{
+						//cr.info("1:true");
 						lastspace=(maxlinelength-currentlength);
 						lastspace=lastspace>templength?templength:lastspace;
 						lastspace = temp.substring(0, lastspace).lastIndexOf(' ');
+						//cr.info("lastspace:"+lastspace);
 						if(lastspace<0)
 						{
 							lastspace=maxlinelength-currentlength;
 						}
+						sendout=true;					
 					}
 					else
 					{
+						//cr.info("1:false");
 						lastspace=templength;
+						//cr.info("lastspace:"+lastspace);
 					}
 					lastspace=lastspace>temp.length()?temp.length():lastspace;
 					currentline.add(temp.substring(0,lastspace));
-					output.add(makeString(currentline.toArray()));
-					currentline.clear();
-					currentline.add(currentcolor);
+					if(sendout)
+					{
+						//cr.info("2:true");
+						output.add(makeString(currentline.toArray()));
+						currentline.clear();
+						currentline.add(currentcolor);
+						sendout=false;
+					}
+					//cr.info("End");
 					temp=temp.substring(lastspace);
 				}
 			}
@@ -119,11 +155,7 @@ public final class ChatUtil
 		}
 		if(!currentline.isEmpty())
 		{
-			if(currentline.size()==1&&currentline.get(0) instanceof ChatColor)
-			{
-				
-			}
-			else
+			if(!(currentline.size()==1&&currentline.get(0) instanceof ChatColor))
 			{
 				output.add(makeString(currentline.toArray()));
 			}
@@ -161,6 +193,11 @@ public final class ChatUtil
 	{
 		Object[] message = {"Parameter was emtpy"};
 		sendError(message,sender);
+	}
+	
+	public static void wrongType(CommandSender sender,int pos,String type)
+	{
+		sendError(sender, "The parameter "+pos+" wan't a '"+type+"'");
 	}
 	
 	public static void note(Object[] message,CommandSender sender)

@@ -4,6 +4,9 @@ version: 0.0.0.0
 author: Namarius
 database: false
 commands:
+  crmore:
+    description: Allows section based output over the last ComplexRedstone command.
+    usage: /<command> [] number of lines,[x] output x till max x+20,[x,y] output x till max x+y
   crcom:
     description: Saving a command that is longer than possible and sending it out if // is found
     usage: /<command> [command, //(Send Command), param] ...
