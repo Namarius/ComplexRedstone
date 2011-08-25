@@ -1,12 +1,15 @@
 package com.namarius.complexredstone;
 
 import java.util.HashMap;
+import java.util.Map;
+
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockListener;
 import org.bukkit.event.block.BlockPhysicsEvent;
 
 import com.namarius.complexredstone.debugger.CRDebugSet;
+import com.namarius.complexredstone.utils.ChatUtil;
 
 public class CRBlockListener extends BlockListener {
 		
@@ -113,6 +116,24 @@ public class CRBlockListener extends BlockListener {
 		else
 		{
 			return false;
+		}
+	}
+	
+	public void listSets(Player player)
+	{
+		HashMap<String, CRDebugSet> playersets = allsets.get(player);
+		CRDebugSet activeset = activesets.get(player);
+		String output = "";
+		int found = 0;
+		if(playersets != null)
+		{
+			for (Map.Entry<String, CRDebugSet> set : playersets.entrySet()) {
+				found++;
+				if(!output.isEmpty())
+					output+=", ";
+				output+=((set.getValue().equals(activeset))?"Active:":"")+set;
+			}
+			ChatUtil.note(player, "All sets: "+output);
 		}
 	}
 }

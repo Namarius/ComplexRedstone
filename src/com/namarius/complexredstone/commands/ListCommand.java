@@ -27,7 +27,7 @@ public class ListCommand extends AbstractCommand {
 			{
 				
 			}
-			ChatUtil.sendError(sender, "Set nor block wasn't present");
+			ChatUtil.sendError(sender, "'set' nor 'block' wasn't present");
 		}
 		else if(args.length<2)
 			ChatUtil.tooFew(2-args.length, sender);
