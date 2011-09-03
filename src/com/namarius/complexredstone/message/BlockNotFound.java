@@ -9,7 +9,7 @@ public class BlockNotFound extends AbstractMessage {
 
 	@Override
 	public String toString() {
-		return "The block:'"+argv[0]+"'wasn't found.";
+		return "The block:'" + argv[0] + "'wasn't found.";
 	}
 
 }

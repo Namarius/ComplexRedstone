@@ -7,80 +7,78 @@ import org.bukkit.Location;
 import org.bukkit.event.block.BlockListener;
 import org.bukkit.event.block.BlockPhysicsEvent;
 
-
 public class BlockCache extends BlockListener {
 
 	private HashMap<Location, HashSet<BlockListener>> blocks = new HashMap<Location, HashSet<BlockListener>>();
-	
+	private boolean enabled=true;
+
 	public BlockCache() {
-		
+
 	}
-	
-	public void addLocation(Location loc,BlockListener listener)
-	{
-		if(loc != null && listener != null)
-		{
+
+	public void addLocation(Location loc, BlockListener listener) {
+		if (loc != null && listener != null) {
 			HashSet<BlockListener> set = this.blocks.get(loc);
-			if(set != null)
-			{
+			if (set != null) {
 				set.add(listener);
-			}
-			else
-			{
+			} else {
 				set = new HashSet<BlockListener>();
 				set.add(listener);
-				this.blocks.put(loc,set);
+				this.blocks.put(loc, set);
 			}
 		}
 	}
-	
-	public void addLocations(Location[] loc,BlockListener listener)
-	{
+
+	public void addLocations(Location[] loc, BlockListener listener) {
 		for (Location location : loc) {
 			addLocation(location, listener);
 		}
 	}
-	
-	public void removeLocation(Location loc,BlockListener listener)
-	{
-		if(loc != null && listener != null)
-		{
+
+	public void removeLocation(Location loc, BlockListener listener) {
+		if (loc != null && listener != null) {
 			HashSet<BlockListener> set = this.blocks.get(loc);
 			set.remove(listener);
-			if(set.isEmpty())
+			if (set.isEmpty())
 				this.blocks.remove(loc);
 		}
 	}
-	
-	public void removeLocations(Location[] loc,BlockListener listener)
-	{
+
+	public void removeLocations(Location[] loc, BlockListener listener) {
 		for (Location location : loc) {
 			removeLocation(location, listener);
 		}
 	}
-	
-	private BlockListener[] getListener(Location loc)
-	{
+
+	private BlockListener[] getListener(Location loc) {
 		BlockListener[] ret = null;
-		if(loc != null)
-		{
-			HashSet<BlockListener> listener=this.blocks.get(loc);
-			if(listener != null)
-			{
+		if (loc != null) {
+			HashSet<BlockListener> listener = this.blocks.get(loc);
+			if (listener != null) {
 				listener.toArray(ret);
 			}
-			
+
 		}
 		return ret;
 	}
-	
+
 	@Override
 	public void onBlockPhysics(BlockPhysicsEvent event) {
+		if(!enabled)
+			return;
 		Location loc = event.getBlock().getLocation();
 		BlockListener[] listener = getListener(loc);
-		if(listener != null)
+		if (listener != null)
 			for (BlockListener blockListener : listener) {
 				blockListener.onBlockPhysics(event);
 			}
+	}
+	
+	public void disable() {
+		this.enabled=false;
+	}
+	
+	public void enable() {
+		this.enabled=true;
 	}
 }

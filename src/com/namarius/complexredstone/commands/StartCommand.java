@@ -4,10 +4,10 @@ import org.bukkit.command.CommandSender;
 
 public class StartCommand extends AbstractCommand {
 
-	public String commandName()
-	{
+	public String commandName() {
 		return "crstart";
 	}
+
 	@Override
 	public boolean localOnCommand(CommandSender sender,
 			org.bukkit.command.Command command, String label, String[] args) {

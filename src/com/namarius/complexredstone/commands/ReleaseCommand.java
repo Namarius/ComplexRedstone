@@ -5,18 +5,18 @@ import org.bukkit.command.CommandSender;
 
 import com.namarius.complexredstone.ComplexRedstone;
 
-public class ForcedDisableCommand extends AbstractCommand {
+public class ReleaseCommand extends AbstractCommand {
 
 	@Override
 	public String commandName() {
 		// TODO Auto-generated method stub
-		return "crforcedisable";
+		return "crrelease";
 	}
 
 	@Override
-	public boolean localOnCommand(CommandSender sender, Command command,
+	protected boolean localOnCommand(CommandSender sender, Command command,
 			String label, String[] args) {
-		ComplexRedstone.forceDisable();
+		ComplexRedstone.release();
 		return true;
 	}
 

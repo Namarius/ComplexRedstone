@@ -18,25 +18,18 @@ public class DeleteSetCommand extends AbstractCommand {
 	@Override
 	public boolean localOnCommand(CommandSender sender, Command command,
 			String label, String[] args) {
-		if(args.length==1)
-		{
-			if(args[0].isEmpty())
-			{
+		if (args.length == 1) {
+			if (args[0].isEmpty()) {
 				ChatUtil.empty(sender);
-			}
-			else
-			{
-				ComplexRedstone.getCRPlayerDebug((Player) sender).deleteSet(args[0]);
+			} else {
+				ComplexRedstone.getCRPlayerDebug((Player) sender).deleteSet(
+						args[0]);
 				return true;
 			}
-		}
-		else if(args.length<1)
-		{
+		} else if (args.length < 1) {
 			ChatUtil.tooFew(1, sender);
-		}
-		else
-		{
-			ChatUtil.tooMany(args.length-1, sender);
+		} else {
+			ChatUtil.tooMany(args.length - 1, sender);
 		}
 		return false;
 	}

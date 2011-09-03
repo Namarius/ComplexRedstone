@@ -1,17 +1,17 @@
 package com.namarius.complexredstone.message;
 
-public class ListBlocks extends AbstractMessage {
+public class SetNorBlock extends AbstractMessage {
 
 	@Override
 	public int numOfArgc() {
 		// TODO Auto-generated method stub
-		return 2;
+		return 0;
 	}
 
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "Number of blocks:" + argv[0] + ":" + argv[1];
+		return "'set' nor 'block' wasn't present";
 	}
 
 }

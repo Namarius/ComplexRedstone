@@ -9,7 +9,7 @@ public class SetNameNotFound extends AbstractMessage {
 
 	@Override
 	public String toString() {
-		return "Set '"+argv[0]+"' not found.";
+		return "Set '" + argv[0] + "' not found.";
 	}
 
 }

@@ -53,7 +53,13 @@ commands:
   crforcedisable:
     description: textextext
     usage: /<command> textextext
+  crrelease:
+    description: textextext
+    usage: /<command> textextext
 permissions:
+  complexredstone.deny
+    children:
+      complexredstone.*: false
   complexredstone.*:
     description: Gives access to all complexredstone functions.
     children:
@@ -100,6 +106,7 @@ permissions:
       complexredstone.crenable: true
       complexredstone.crdisable: true
       complexredstone.crforcedisable: true
+      complexredstone.crrelease: true
   complexredstone.crmore:
     default: true
   complexredstone.crcom:
@@ -133,6 +140,8 @@ permissions:
   complexredstone.crdisable:
     default: true
   complexredstone.crforcedisable:
+    default: op
+  complexredstone.crrelease:
     default: op
     
   

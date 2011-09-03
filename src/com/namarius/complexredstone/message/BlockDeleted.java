@@ -5,13 +5,13 @@ public class BlockDeleted extends AbstractMessage {
 	@Override
 	public int numOfArgc() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 1;
 	}
 
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "Block successfully deleted.";
+		return "Block '" + argv[0] + "' deleted.";
 	}
 
 }

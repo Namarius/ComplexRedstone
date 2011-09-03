@@ -18,12 +18,10 @@ public class AddCommand extends AbstractCommand {
 			String label, String[] args) {
 		Player player = (Player) sender;
 		String name = null;
-		if(args.length==1)
-		{
-			name=args[0];
+		if (args.length == 1) {
+			name = args[0];
 		}
-		if(args.length>-1&&args.length<2)
-		{
+		if (args.length > -1 && args.length < 2) {
 			Block target = player.getTargetBlock(null, 100);
 		}
 		return false;

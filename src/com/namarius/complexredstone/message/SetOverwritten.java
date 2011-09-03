@@ -1,6 +1,6 @@
 package com.namarius.complexredstone.message;
 
-public class SetOverwritten extends AbstractMessage{
+public class SetOverwritten extends AbstractMessage {
 
 	@Override
 	public int numOfArgc() {
@@ -9,8 +9,7 @@ public class SetOverwritten extends AbstractMessage{
 
 	@Override
 	public String toString() {
-		return "Set '"+argv[0]+"' overridden.";
+		return "Set '" + argv[0] + "' overridden.";
 	}
-	
 
 }

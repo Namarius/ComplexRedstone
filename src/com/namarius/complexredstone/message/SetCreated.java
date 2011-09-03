@@ -7,10 +7,10 @@ public class SetCreated extends AbstractMessage {
 		// TODO Auto-generated method stub
 		return 1;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Set '"+argv[0]+"' created.";
+		return "Set '" + argv[0] + "' created.";
 	}
 
 }

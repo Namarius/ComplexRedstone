@@ -11,7 +11,7 @@ public class NumberOfLines extends AbstractMessage {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "Number of lines:"+argv[0];
+		return "Number of lines:" + argv[0];
 	}
 
 }

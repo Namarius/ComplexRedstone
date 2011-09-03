@@ -11,7 +11,7 @@ public class SetDeleted extends AbstractMessage {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "Set '"+argv[0]+"' deleted.";
+		return "Set '" + argv[0] + "' deleted.";
 	}
 
 }

@@ -11,7 +11,7 @@ public class ListSets extends AbstractMessage {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "Number of sets:"+argv[0]+":"+argv[1];
+		return "Number of sets:" + argv[0] + ":" + argv[1];
 	}
 
 }
