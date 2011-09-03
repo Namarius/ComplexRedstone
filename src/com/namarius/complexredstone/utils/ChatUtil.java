@@ -8,6 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import com.namarius.complexredstone.ComplexRedstone;
+import com.namarius.complexredstone.message.AbstractMessage;
 
 
 public final class ChatUtil 
@@ -211,6 +212,16 @@ public final class ChatUtil
 	{
 		Object[] tempmessage = {message};
 		note(tempmessage,sender);
+	}
+	
+	public static void note(CommandSender sender,AbstractMessage message)
+	{
+		note(sender,message.toString());
+	}
+
+	public static void sendError(Player player, AbstractMessage message) {
+		sendError(player, message.toString());
+		
 	}
 	
 }

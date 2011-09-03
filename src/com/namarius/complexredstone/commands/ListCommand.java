@@ -23,7 +23,8 @@ public class ListCommand extends AbstractCommand {
 			String what = args[0];
 			if(what.equalsIgnoreCase("set"))
 			{
-				ComplexRedstone.getSelf().getBlockListener().listSets((Player) sender);
+				ComplexRedstone.getCRPlayerDebug((Player) sender).listSets();
+				return true;
 			}
 			else if(what.equalsIgnoreCase("block"))
 			{

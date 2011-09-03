@@ -5,7 +5,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import com.namarius.complexredstone.ComplexRedstone;
-import com.namarius.complexredstone.debugger.CRPlayerDebug;
 import com.namarius.complexredstone.utils.ChatUtil;
 
 public class DeleteSetCommand extends AbstractCommand {
@@ -27,11 +26,8 @@ public class DeleteSetCommand extends AbstractCommand {
 			}
 			else
 			{
-				CRPlayerDebug player = ComplexRedstone.getCRPlayerDebug((Player) sender);
-				if(player!=null)
-				{
-					return player.removeSet(args[0]);
-				}
+				ComplexRedstone.getCRPlayerDebug((Player) sender).deleteSet(args[0]);
+				return true;
 			}
 		}
 		else if(args.length<1)

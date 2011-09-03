@@ -26,10 +26,7 @@ public class AddSetCommand extends AbstractCommand {
 			}
 			else
 			{
-				if(ComplexRedstone.getSelf().getBlockListener().addSet((Player) sender, args[0]))
-					ChatUtil.note(sender, "Set '"+args[0]+"' overwritten.");
-				else
-					ChatUtil.note(sender, "Set '"+args[0]+"' created.");
+				ComplexRedstone.getCRPlayerDebug((Player) sender).addSet(args[0]);
 				return true;
 			}
 		}

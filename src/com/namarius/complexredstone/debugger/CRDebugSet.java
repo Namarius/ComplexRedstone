@@ -1,20 +1,24 @@
 package com.namarius.complexredstone.debugger;
 
+import java.util.ListIterator;
 import java.util.Vector;
 
-import org.bukkit.Location;
 import org.bukkit.event.block.BlockPhysicsEvent;
 
-import com.namarius.complexredstone.CRBlockListener;
+import com.namarius.complexredstone.api.BlockCache;
+import com.namarius.complexredstone.message.MessageType;
+import com.namarius.complexredstone.utils.ChatUtil;
 
 public class CRDebugSet 
 {
-	private CRBlockListener blocklistener;
+	private BlockCache cache;
+	private CRPlayerDebug listener;
 	private final Vector<CRLocation> blocks = new Vector<CRLocation>();
 	
-	public CRDebugSet(CRBlockListener blocklistener)
+	public CRDebugSet(BlockCache cache, CRPlayerDebug listener)
 	{
-		this.blocklistener = blocklistener;
+		this.cache = cache;
+		this.listener = listener;
 	}
 	
 	public boolean reciveEvent(BlockPhysicsEvent event)
@@ -22,59 +26,44 @@ public class CRDebugSet
 		return true;
 	}
 	
-	public boolean setActive()
+	public void activate()
 	{
-		for (CRLocation loc : blocks) {
-			blocklistener.insertBlock(loc);
-		}
-		return true;
+		CRLocation[] loc = null;
+		cache.addLocations(blocks.toArray(loc), listener);
 	}
 	
-	public boolean setInactive()
+	public void deactivate()
 	{
-		for (CRLocation loc : blocks) {
-			blocklistener.removeBlock(loc);
-		}
-		return true;
+		CRLocation[] loc = null;
+		cache.removeLocations(blocks.toArray(loc), listener);
 	}
 	
-	public boolean insertBlock(Location location,String name)
+	public void addBlock(CRLocation loc)
 	{
-		CRLocation crlocation = new CRLocation(location,name);
-		int index=blocks.indexOf(crlocation);
-		if(index<0)
+		if(blocks.add(loc))
+			cache.addLocation(loc, listener);
+	}
+	
+	public void deleteBlock(CRLocation loc)
+	{
+		if(blocks.remove(loc))
+			cache.removeLocation(loc, listener);
+	}
+
+	public void listBlocks() {
+		StringBuilder string = new StringBuilder();
+		int index=0;
+		for(ListIterator<CRLocation> location = blocks.listIterator();location.hasNext();)
 		{
-			return blocks.add(crlocation);
+			index = location.nextIndex();
+			CRLocation loc = location.next();
+			if(string.length()!=0)
+				string.append(", ");
+			String name = loc.getName();
+			name = name!=null?name:"";
+			string.append("["+index+"] "+loc.getName());			
 		}
-		else
-		{
-			blocks.setElementAt(crlocation, index);
-			return false;
-		}
+		ChatUtil.note(listener.getPlayer(), MessageType.ListBlocks.addArg(new Integer(index+1).toString()).addArg(string.toString()));
 	}
-	
-	public boolean removeBlock(String name)
-	{
-		for (CRLocation loc : blocks) {
-			if(loc.equals(name))
-			{
-				blocks.remove(loc);
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	public boolean removeBlock(Location location)
-	{
-		for (CRLocation loc : blocks) {
-			if(loc.equals(location))
-			{
-				blocks.remove(loc);
-				return true;
-			}
-		}
-		return false;
-	}
-	
+		
 }

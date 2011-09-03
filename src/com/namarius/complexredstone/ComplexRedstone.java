@@ -21,7 +21,6 @@ public class ComplexRedstone extends JavaPlugin {
 	private static ComplexRedstone self;
 	private Logger log;
 	private BlockCache blockcache = new BlockCache();
-	private CRBlockListener blocklistener = new CRBlockListener(this);
 	private CRPlayerListener playerlistener = new CRPlayerListener(this);
 	private TickRunner tickrunner = new TickRunner(this);
 	private Server server;
@@ -76,7 +75,11 @@ public class ComplexRedstone extends JavaPlugin {
 	
 	public void removePlayer(Player player)
 	{
-		blocklistener.removePlayer(player);
+		CRPlayerDebug debug = players.get(player);
+		if(debug!=null)
+		{
+			debug.deactivate();
+		}
 	}
 	
 	
