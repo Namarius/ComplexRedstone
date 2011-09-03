@@ -7,11 +7,14 @@ public enum MessageType {
 	BlockNotFound(BlockNotFound.class),
 	ListBlocks(ListBlocks.class),
 	ListSets(ListSets.class),
+	NoActiveSet(NoActiveSet.class),
+	NoLastOutput(NoLastOutput.class),
 	NumberOfLines(NumberOfLines.class),
 	SetCreated(SetCreated.class),
+	SetDeleted(SetDeleted.class),
 	SetNameNotFound(SetNameNotFound.class),
 	SetNotFound(SetNotFound.class),
-	SetOverridden(SetOverridden.class);
+	SetOverwritten(SetOverwritten.class);
 	
 	final private Class<? extends AbstractMessage> message;
 	

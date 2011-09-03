@@ -4,6 +4,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import com.namarius.complexredstone.message.MessageType;
 import com.namarius.complexredstone.utils.ChatUtil;
 
 public class MoreCommand extends AbstractCommand {
@@ -22,7 +23,7 @@ public class MoreCommand extends AbstractCommand {
 		String[] lastlines=ChatUtil.getLines((Player) sender);
 		if(lastlines == null)
 		{
-			ChatUtil.sendError(sender, "There isn't any last output.");
+			ChatUtil.sendError(sender, MessageType.NoLastOutput.get());
 			return true;
 		}
 		final int linescount = lastlines.length;
@@ -30,7 +31,7 @@ public class MoreCommand extends AbstractCommand {
 		{
 		case 0:
 		{
-			ChatUtil.note(sender, "There are "+linescount+" lines in buffer");			
+			ChatUtil.note(sender, MessageType.NumberOfLines.addArg(new Integer(linescount).toString()));			
 			break;
 		}
 		case 1: //begin as parameter till +20 or end

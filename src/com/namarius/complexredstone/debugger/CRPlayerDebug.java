@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockListener;
+import org.getspout.spoutapi.event.spout.ServerTickEvent;
 
 import com.namarius.complexredstone.ComplexRedstone;
 import com.namarius.complexredstone.api.BlockCache;
@@ -30,7 +31,10 @@ public class CRPlayerDebug extends BlockListener
 		CRDebugSet set = sets.get(name);
 		if(set != null)
 			set.deactivate();
-		sets.put(name, new CRDebugSet(cache, this));
+		if(sets.put(name, new CRDebugSet(cache, this))!=null)
+			ChatUtil.note(player, MessageType.SetOverwritten.addArg(name));
+		else
+			ChatUtil.note(player, MessageType.SetCreated.addArg(name));
 	}
 	
 	public void deleteSet(String name)
@@ -38,7 +42,8 @@ public class CRPlayerDebug extends BlockListener
 		CRDebugSet set = sets.get(name);
 		if(set != null)
 			set.deactivate();
-		sets.remove(name);
+		if(sets.remove(name) != null)
+			ChatUtil.note(player, MessageType.SetDeleted.addArg(name));
 	}
 	
 	public void addBlock(CRLocation location)
@@ -60,12 +65,15 @@ public class CRPlayerDebug extends BlockListener
 	public void listSets()
 	{
 		StringBuilder string = new StringBuilder();
+		Integer index = new Integer(0);
 		for(CRDebugSet set : sets.values())
 		{
+			index++;
 			if(string.length()!=0)
 				string.append(", ");
 			string.append(set.toString()+(set.equals(activeset)?" (active)":""));
 		}
+		ChatUtil.note(player, MessageType.ListSets.addArg(index.toString()).addArg(string.toString()));
 	}
 	
 	public void listBlocks(String name)
@@ -95,6 +103,11 @@ public class CRPlayerDebug extends BlockListener
 	public void deactivate() {
 		if(activeset!=null)
 			activeset.deactivate();
+	}
+	
+	public void sendServerTick(ServerTickEvent event)
+	{
+		
 	}
 	
 }

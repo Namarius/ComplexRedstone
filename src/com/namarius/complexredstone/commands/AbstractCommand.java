@@ -21,7 +21,7 @@ public abstract class AbstractCommand implements CRCommand {
 		if(playeronly)
 			if(sender instanceof Player)
 			{
-				if(sender.hasPermission("complex.redstone.command."+commandName()))
+				if(sender.hasPermission("complexredstone."+commandName()))
 					return localOnCommand(sender, command, label, args);
 				else
 					ChatUtil.sendError(sender, "You are not allowed to use:"+commandName());

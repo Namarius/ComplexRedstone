@@ -3,6 +3,7 @@ main: com.namarius.complexredstone.ComplexRedstone
 version: 0.0.0.0
 author: Namarius
 database: false
+depend: [Spout]
 commands:
   crmore:
     description: Allows section based output over the last ComplexRedstone command.
@@ -52,5 +53,86 @@ commands:
   crforcedisable:
     description: textextext
     usage: /<command> textextext
-  
+permissions:
+  complexredstone.*:
+    description: Gives access to all complexredstone functions.
+    children:
+      complexredstone.high: true
+  complexredstone.low.*:
+    description: Gives access to low security functions.
+    children:
+      complexredstone.crmore: true
+      complexredstone.crcom: true
+  complexredstone.middle.*:
+    description: Gives access to middle security functions.
+    children:
+      complexredstone.low: true
+      complexredstone.crstart: true
+      complexredstone.crend: true
+      complexredstone.crstep: true
+      complexredstone.crarm: true
+      complexredstone.crfuse: true
+      complexredstone.crlist: true
+      complexredstone.cradd: true
+      complexredstone.crdelete: true
+      complexredstone.craddset: true
+      complexredstone.crdeleteset: true
+      complexredstone.crswitchset: true
+      complexredstone.crenable: true
+      complexredstone.crdisable: true
+  complexredstone.high.*:
+    description: Gives access to high security functions.
+    children:
+      complexredstone.middle: true
+      complexredstone.crmore: true
+      complexredstone.crcom: true
+      complexredstone.crstart: true
+      complexredstone.crend: true
+      complexredstone.crstep: true
+      complexredstone.crarm: true
+      complexredstone.crfuse: true
+      complexredstone.crlist: true
+      complexredstone.cradd: true
+      complexredstone.crdelete: true
+      complexredstone.craddset: true
+      complexredstone.crdeleteset: true
+      complexredstone.crswitchset: true
+      complexredstone.crenable: true
+      complexredstone.crdisable: true
+      complexredstone.crforcedisable: true
+  complexredstone.crmore:
+    default: true
+  complexredstone.crcom:
+    default: true
+  complexredstone.crlow:
+    default: true
+  complexredstone.crstart:
+    default: true
+  complexredstone.crend:
+    default: true
+  complexredstone.crstep:
+    default: true
+  complexredstone.crarm:
+    default: true
+  complexredstone.crfuse:
+    default: true
+  complexredstone.crlist:
+    default: true
+  complexredstone.cradd:
+    default: true
+  complexredstone.crdelete:
+    default: true
+  complexredstone.craddset:
+    default: true
+  complexredstone.crdeleteset:
+    default: true
+  complexredstone.crswitchset:
+    default: true
+  complexredstone.crenable:
+    default: true
+  complexredstone.crdisable:
+    default: true
+  complexredstone.crforcedisable:
+    default: op
+    
   

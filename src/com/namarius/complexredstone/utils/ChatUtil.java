@@ -180,6 +180,11 @@ public final class ChatUtil
 		send(tempmessage,sender,errorcolor);
 	}
 	
+	public static void sendError(CommandSender sender, AbstractMessage message) {
+		sendError(sender, message.toString());
+		
+	}
+	
 	public static void tooMany(int number,CommandSender sender)
 	{
 		Object[] message = {"Too many parameters:"+number};
@@ -217,11 +222,6 @@ public final class ChatUtil
 	public static void note(CommandSender sender,AbstractMessage message)
 	{
 		note(sender,message.toString());
-	}
-
-	public static void sendError(Player player, AbstractMessage message) {
-		sendError(player, message.toString());
-		
 	}
 	
 }

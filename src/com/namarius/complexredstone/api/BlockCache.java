@@ -78,8 +78,9 @@ public class BlockCache extends BlockListener {
 	public void onBlockPhysics(BlockPhysicsEvent event) {
 		Location loc = event.getBlock().getLocation();
 		BlockListener[] listener = getListener(loc);
-		for (BlockListener blockListener : listener) {
-			blockListener.onBlockPhysics(event);
-		}
+		if(listener != null)
+			for (BlockListener blockListener : listener) {
+				blockListener.onBlockPhysics(event);
+			}
 	}
 }

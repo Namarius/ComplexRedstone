@@ -4,6 +4,7 @@ import java.util.ListIterator;
 import java.util.Vector;
 
 import org.bukkit.event.block.BlockPhysicsEvent;
+import org.getspout.spoutapi.event.spout.ServerTickEvent;
 
 import com.namarius.complexredstone.api.BlockCache;
 import com.namarius.complexredstone.message.MessageType;
@@ -21,9 +22,14 @@ public class CRDebugSet
 		this.listener = listener;
 	}
 	
-	public boolean reciveEvent(BlockPhysicsEvent event)
+	public boolean reciveBlockEvent(BlockPhysicsEvent event)
 	{
 		return true;
+	}
+	
+	public void reciveServerTickEvent(ServerTickEvent event)
+	{
+		
 	}
 	
 	public void activate()
