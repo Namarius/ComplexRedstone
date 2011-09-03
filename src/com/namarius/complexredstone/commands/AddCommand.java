@@ -14,7 +14,6 @@ public class AddCommand extends AbstractCommand {
 	@Override
 	public boolean localOnCommand(CommandSender sender, Command command,
 			String label, String[] args) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

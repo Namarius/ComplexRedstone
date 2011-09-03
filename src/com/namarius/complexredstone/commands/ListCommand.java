@@ -2,7 +2,9 @@ package com.namarius.complexredstone.commands;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
+import com.namarius.complexredstone.ComplexRedstone;
 import com.namarius.complexredstone.utils.ChatUtil;
 
 public class ListCommand extends AbstractCommand {
@@ -16,12 +18,12 @@ public class ListCommand extends AbstractCommand {
 	@Override
 	public boolean localOnCommand(CommandSender sender, Command command,
 			String label, String[] args) {
-		if(args.length == 2)
+		if(args.length == 1)
 		{
 			String what = args[0];
 			if(what.equalsIgnoreCase("set"))
 			{
-				
+				ComplexRedstone.getSelf().getBlockListener().listSets((Player) sender);
 			}
 			else if(what.equalsIgnoreCase("block"))
 			{

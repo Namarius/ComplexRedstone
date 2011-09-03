@@ -7,6 +7,8 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import com.namarius.complexredstone.ComplexRedstone;
+
 
 public final class ChatUtil 
 {
@@ -98,22 +100,22 @@ public final class ChatUtil
 			else if(object instanceof String)
 			{
 				String temp = (String) object;
-				//ComplexRedstone cr = ComplexRedstone.getSelf();
+				ComplexRedstone cr = ComplexRedstone.getSelf();
 				for(int templength=temp.length();templength>0;templength=temp.length())
 				{
 					int currentlength=getStringLength(currentline.toArray());
 					int lastspace=0;
 					boolean sendout = false;
-					//cr.info("Begin");
-					//cr.info("currentlenght:"+currentlength+"templength:"+templength);
+					cr.info("Begin");
+					cr.info("currentlenght:"+currentlength+"templength:"+templength);
 					if(templength+currentlength>maxlinelength)
 					{
-						//cr.info("1:true");
+						cr.info("1:true");
 						lastspace=(maxlinelength-currentlength);
 						lastspace=lastspace>templength?templength:lastspace;
 						lastspace = temp.substring(0, lastspace).lastIndexOf(' ');
-						//cr.info("lastspace:"+lastspace);
-						if(lastspace<0)
+						cr.info("lastspace:"+lastspace);
+						if(lastspace<1)
 						{
 							lastspace=maxlinelength-currentlength;
 						}
@@ -121,21 +123,21 @@ public final class ChatUtil
 					}
 					else
 					{
-						//cr.info("1:false");
+						cr.info("1:false");
 						lastspace=templength;
-						//cr.info("lastspace:"+lastspace);
+						cr.info("lastspace:"+lastspace);
 					}
 					lastspace=lastspace>temp.length()?temp.length():lastspace;
 					currentline.add(temp.substring(0,lastspace));
 					if(sendout)
 					{
-						//cr.info("2:true");
+						cr.info("2:true");
 						output.add(makeString(currentline.toArray()));
 						currentline.clear();
 						currentline.add(currentcolor);
 						sendout=false;
 					}
-					//cr.info("End");
+					cr.info("End");
 					temp=temp.substring(lastspace);
 				}
 			}

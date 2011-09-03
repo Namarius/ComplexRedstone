@@ -4,6 +4,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import com.namarius.complexredstone.utils.ChatUtil;
+
 public abstract class AbstractCommand implements CRCommand {
 
 	private static boolean playeronly = true;
@@ -18,7 +20,12 @@ public abstract class AbstractCommand implements CRCommand {
 			String label, String[] args) {
 		if(playeronly)
 			if(sender instanceof Player)
-				return localOnCommand(sender, command, label, args);
+			{
+				if(sender.hasPermission("complex.redstone.command."+commandName()))
+					return localOnCommand(sender, command, label, args);
+				else
+					ChatUtil.sendError(sender, "You are not allowed to use:"+commandName());
+			}
 			else
 				sender.sendMessage("Non player can't use this command");
 		else

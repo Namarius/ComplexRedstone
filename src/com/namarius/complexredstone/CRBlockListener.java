@@ -131,9 +131,9 @@ public class CRBlockListener extends BlockListener {
 				found++;
 				if(!output.isEmpty())
 					output+=", ";
-				output+=((set.getValue().equals(activeset))?"Active:":"")+set;
+				output+=((set.getValue().equals(activeset))?"Active:":"")+set.getKey();
 			}
-			ChatUtil.note(player, "All sets: "+output);
+			ChatUtil.note(player, "All sets ("+found+"): "+output);
 		}
 	}
 }

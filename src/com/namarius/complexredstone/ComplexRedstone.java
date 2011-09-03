@@ -12,17 +12,21 @@ import org.bukkit.event.Event.Type;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.namarius.complexredstone.api.BlockCache;
 import com.namarius.complexredstone.commands.CRCommand;
 import com.namarius.complexredstone.commands.CRCommandType;
+import com.namarius.complexredstone.debugger.CRPlayerDebug;
 
 public class ComplexRedstone extends JavaPlugin {
 	private static ComplexRedstone self;
 	private Logger log;
+	private BlockCache blockcache = new BlockCache();
 	private CRBlockListener blocklistener = new CRBlockListener(this);
 	private CRPlayerListener playerlistener = new CRPlayerListener(this);
 	private TickRunner tickrunner = new TickRunner(this);
 	private Server server;
 	private HashMap<String,CRCommand> commands = new HashMap<String,CRCommand>();
+	private static HashMap<Player,CRPlayerDebug> players = new HashMap<Player, CRPlayerDebug>();
 	
 	private static void setSelf(ComplexRedstone plugin)
 	{
@@ -34,9 +38,9 @@ public class ComplexRedstone extends JavaPlugin {
 		return self;
 	}
 	
-	public CRBlockListener getBlockListener()
+	public static CRPlayerDebug getCRPlayerDebug(Player player)
 	{
-		return blocklistener;
+		return players.get(player);
 	}
 	
 	@Override
@@ -51,7 +55,7 @@ public class ComplexRedstone extends JavaPlugin {
 		PluginManager pm = server.getPluginManager();
 		log = server.getLogger();
 		info("ComplexRestone booting up");
-		pm.registerEvent(Type.BLOCK_PHYSICS, blocklistener, Priority.Monitor, this);
+		pm.registerEvent(Type.BLOCK_PHYSICS, blockcache, Priority.Monitor, this);
 		pm.registerEvent(Type.PLAYER_QUIT,playerlistener,Priority.Monitor,this);
 		pm.registerEvent(Type.PLAYER_KICK, playerlistener, Priority.Monitor, this);
 		commands.clear();
