@@ -5,8 +5,8 @@ import java.lang.reflect.Constructor;
 public enum CRCommandType {
 	StartCommand(StartCommand.class), EndCommand(EndCommand.class), StepCommand(
 			StepCommand.class), ArmCommand(ArmCommand.class), FuseCommand(
-			FuseCommand.class), ListCommand(ListCommand.class), AddCommand(
-			AddCommand.class), DeleteCommand(DeleteCommand.class), AddSetCommand(
+			FuseCommand.class), ListCommand(ListCommand.class), AddBlockCommand(
+			AddBlockCommand.class), DeleteCommand(DeleteBlockCommand.class), AddSetCommand(
 			AddSetCommand.class), DeleteSetCommand(DeleteSetCommand.class), SwitchCommand(
 			SwitchCommand.class), EnableCommand(EnableCommand.class), DisableCommand(
 			DisableCommand.class), ForcedDisableCommand(

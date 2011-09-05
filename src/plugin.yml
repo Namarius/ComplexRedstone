@@ -29,7 +29,7 @@ commands:
   crlist:
     description: textextext
     usage: /<command> textextext
-  cradd:
+  craddblock:
     description: textextext
     usage: /<command> textextext
   crdelete:
